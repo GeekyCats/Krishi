@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="Home"
+        android:icon="@drawable/baseline_home_24"/>
+    <item
+        android:id="@+id/crop"
+        android:title="Crop"
+        android:icon="@drawable/crop"/>
+    <item
+        android:id="@+id/weather"
+        android:title="Weather"
+        android:icon="@drawable/cloud_sun_rain_solid"/>
+    <item
+        android:id="@+id/person"
+        android:title="Person"
+        android:icon="@drawable/baseline_person_24"/>
+
+</menu>

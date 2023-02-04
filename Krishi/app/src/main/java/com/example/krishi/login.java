@@ -29,7 +29,7 @@ public class login extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         ImageView image = view.findViewById(R.id.imageView);
         navController = Navigation.findNavController(requireActivity(), this.getId());
-//        image.setImageResource(R.drawable.logo_asset);
+        image.setImageResource(R.drawable.logo_asset);
         TextView text = view.findViewById(R.id.signUp);
         text.setOnClickListener(new View.OnClickListener() {
             @Override
