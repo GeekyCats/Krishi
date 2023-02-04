@@ -1,4 +1,4 @@
-package com.example.krishi;
+package com.example.krishi.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +16,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.krishi.auth.ApiClient;
-import com.example.krishi.auth.LoginRequest;
-import com.example.krishi.auth.SignUpResponse;
+import com.example.krishi.R;
+import com.example.krishi.retrofit.ApiClient;
+import com.example.krishi.data.LoginRequest;
+import com.example.krishi.data.UserResponse;
 import com.example.krishi.home.HomeActivity;
-
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -83,10 +82,10 @@ public class Login extends Fragment {
     }
 
     public void loginUser(LoginRequest loginRequest){
-        Call<SignUpResponse> loginResponseCall = ApiClient.getAPIService().login(loginRequest);
-        loginResponseCall.enqueue(new retrofit2.Callback<SignUpResponse>() {
+        Call<UserResponse> loginResponseCall = ApiClient.getAPIService().login(loginRequest);
+        loginResponseCall.enqueue(new retrofit2.Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<SignUpResponse> call, Response<SignUpResponse> response) {
+            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
                 if(response.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(getContext(), "Login Successful !!", Toast.LENGTH_SHORT).show();
@@ -98,7 +97,7 @@ public class Login extends Fragment {
                 }
             }
             @Override
-            public void onFailure(Call<SignUpResponse> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext(), "Login Failed !!", Toast.LENGTH_SHORT).show();
             }

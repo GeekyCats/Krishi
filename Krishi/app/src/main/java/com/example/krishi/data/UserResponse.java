@@ -1,6 +1,6 @@
-package com.example.krishi.auth;
+package com.example.krishi.data;
 
-public class SignUpResponse {
+public class UserResponse {
 
     private String name;
     private String email;

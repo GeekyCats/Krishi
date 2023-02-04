@@ -1,8 +1,10 @@
-package com.example.krishi;
+package com.example.krishi.auth;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.krishi.R;
 
 import java.util.Objects;
 

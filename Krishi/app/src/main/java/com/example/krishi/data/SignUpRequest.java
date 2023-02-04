@@ -1,8 +1,8 @@
-package com.example.krishi.auth;
+package com.example.krishi.data;
 
 import com.google.gson.annotations.SerializedName;
 
-public class User {
+public class SignUpRequest {
 
     @SerializedName("name")
     public String name;
@@ -13,13 +13,13 @@ public class User {
     @SerializedName("password")
     public String password;
 
-    public User(String name, String email, String password) {
+    public SignUpRequest(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public User() {
+    public SignUpRequest() {
 
     }
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/login"
-        android:name="com.example.krishi.Login"
+        android:name="com.example.krishi.auth.Login"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/signup"
-        android:name="com.example.krishi.SignUp"
+        android:name="com.example.krishi.auth.SignUp"
         android:label="fragment_signup"
         tools:layout="@layout/fragment_signup" >
         <action

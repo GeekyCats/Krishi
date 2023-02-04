@@ -1,4 +1,4 @@
-package com.example.krishi;
+package com.example.krishi.auth;
 
 import android.os.Bundle;
 
@@ -14,9 +14,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.krishi.auth.ApiClient;
-import com.example.krishi.auth.SignUpResponse;
-import com.example.krishi.auth.User;
+import com.example.krishi.R;
+import com.example.krishi.retrofit.ApiClient;
+import com.example.krishi.data.UserResponse;
+import com.example.krishi.data.SignUpRequest;
 
 import retrofit2.Call;
 
@@ -81,18 +82,18 @@ public class SignUp extends Fragment {
     }
 
 
-    public User createUserRequest(){
-        User user = new User();
-        user.setName(name.getText().toString());
-        user.setEmail(email.getText().toString());
-        user.setPassword(password.getText().toString());
-        return user;
+    public SignUpRequest createUserRequest(){
+        SignUpRequest signUpRequest = new SignUpRequest();
+        signUpRequest.setName(name.getText().toString());
+        signUpRequest.setEmail(email.getText().toString());
+        signUpRequest.setPassword(password.getText().toString());
+        return signUpRequest;
     }
-    public void saveUser(User user){
-        Call<SignUpResponse> call = ApiClient.getAPIService().register(user);
-        call.enqueue(new retrofit2.Callback<SignUpResponse>() {
+    public void saveUser(SignUpRequest signUpRequest){
+        Call<UserResponse> call = ApiClient.getAPIService().register(signUpRequest);
+        call.enqueue(new retrofit2.Callback<UserResponse>() {
             @Override
-            public void onResponse(Call<SignUpResponse> call, retrofit2.Response<SignUpResponse> response) {
+            public void onResponse(Call<UserResponse> call, retrofit2.Response<UserResponse> response) {
                 if(response.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(getContext(), "User Registered Successfully !!", Toast.LENGTH_SHORT).show();
@@ -104,7 +105,7 @@ public class SignUp extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<SignUpResponse> call, Throwable t) {
+            public void onFailure(Call<UserResponse> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext(), "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }

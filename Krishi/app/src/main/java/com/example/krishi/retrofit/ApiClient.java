@@ -1,4 +1,4 @@
-package com.example.krishi.auth;
+package com.example.krishi.retrofit;
 
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
