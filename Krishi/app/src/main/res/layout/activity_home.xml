@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView3"
+            android:id="@+id/container"
             android:name="com.example.krishi.home.Home"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

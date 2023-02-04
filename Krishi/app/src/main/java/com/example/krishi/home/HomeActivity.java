@@ -8,41 +8,47 @@ import android.view.MenuItem;
 import com.example.krishi.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class HomeActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener
-    {
-        BottomNavigationView bottomNavigationView;
+import java.util.Objects;
+
+public class HomeActivity extends AppCompatActivity {
+
+    BottomNavigationView bottomNavigationView;
+    Home home = new Home();
+    Crop crop = new Crop();
+    Weather weather = new Weather();
+    Person person = new Person();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        Objects.requireNonNull(getSupportActionBar()).hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-//        bottomNavigationView = findViewById(R.id.bottomNavBar);
-//        bottomNavigationView.setOnNavigationItemSelectedListener(this);
-//        bottomNavigationView.setSelectedItemId(R.id.home);
-    }
-        Home home = new Home();
-        Crop crop = new Crop();
-        Weather weather = new Weather();
-        Person person = new Person();
+        bottomNavigationView = findViewById(R.id.bottomNavBar);
+        getSupportFragmentManager().beginTransaction().replace(R.id.container, home).commit();
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.home2:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, home).commit();
-                    return true;
-                case R.id.crop2:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, crop).commit();
-                    return true;
-                case R.id.weather2:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, weather).commit();
-                    return true;
-                case R.id.person2:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView, person).commit();
-                    return true;
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, home).commit();
+                        return true;
+                    case R.id.crop:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, crop).commit();
+                        return true;
+                    case R.id.weather:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, weather).commit();
+                        return true;
+                    case R.id.person:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.container, person).commit();
+                        return true;
+                }
+                return false;
             }
-            return false;
-        }
+        });
+    }
+
     }
