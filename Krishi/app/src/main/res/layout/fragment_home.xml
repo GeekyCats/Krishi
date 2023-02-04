@@ -13,6 +13,6 @@
         android:padding="4dp"
         android:layout_margin="15dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_row"/>
+        tools:listitem="@layout/news"/>
 
 </RelativeLayout>

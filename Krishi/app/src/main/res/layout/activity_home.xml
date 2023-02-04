@@ -7,8 +7,8 @@
     tools:context=".home.HomeActivity">
 
     <FrameLayout
-        android:layout_width="410dp"
-        android:layout_height="653dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -17,7 +17,7 @@
             android:id="@+id/container"
             android:name="com.example.krishi.home.Home"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:layout="@layout/fragment_home" />
     </FrameLayout>
 
@@ -26,8 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavBar"
