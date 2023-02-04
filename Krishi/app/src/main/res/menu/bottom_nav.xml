@@ -14,7 +14,7 @@
         android:icon="@drawable/cloud_sun_rain_solid"/>
     <item
         android:id="@+id/person"
-        android:title="Person"
+        android:title="Profile"
         android:icon="@drawable/baseline_person_24"/>
 
 </menu>

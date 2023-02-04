@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".signup">
+    tools:context=".SignUp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/PersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -33,7 +33,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/PersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.086"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +41,7 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/PersonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
@@ -67,7 +67,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.083"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/PersonName"
             app:layout_constraintVertical_bias="1.0" />
 
         <EditText
@@ -165,11 +165,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/add_user_2"
-            app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/PersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView7"
             app:layout_constraintVertical_bias="0.269" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.446"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_signup"
+            app:layout_constraintVertical_bias="0.151" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

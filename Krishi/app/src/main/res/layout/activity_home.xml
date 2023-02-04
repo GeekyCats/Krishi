@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeActivity">
+    tools:context=".home.HomeActivity">
 
     <FrameLayout
         android:layout_width="410dp"
@@ -14,6 +14,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragmentContainerView3"
+            android:name="com.example.krishi.home.Home"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_home" />
     </FrameLayout>
 
     <FrameLayout

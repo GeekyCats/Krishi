@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav"
+    app:startDestination="@id/home2">
+
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.example.krishi.home.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home2_to_crop2"
+            app:destination="@id/crop2" />
+        <action
+            android:id="@+id/action_home2_to_weather2"
+            app:destination="@id/weather2" />
+        <action
+            android:id="@+id/action_home2_to_person2"
+            app:destination="@id/person2" />
+    </fragment>
+    <fragment
+        android:id="@+id/crop2"
+        android:name="com.example.krishi.home.Crop"
+        android:label="fragment_crop"
+        tools:layout="@layout/fragment_crop" >
+        <action
+            android:id="@+id/action_crop2_to_home2"
+            app:destination="@id/home2" />
+        <action
+            android:id="@+id/action_crop2_to_weather2"
+            app:destination="@id/weather2" />
+        <action
+            android:id="@+id/action_crop2_to_person2"
+            app:destination="@id/person2" />
+        <action
+            android:id="@+id/action_crop2_to_person22"
+            app:destination="@id/person2" />
+    </fragment>
+    <fragment
+        android:id="@+id/person2"
+        android:name="com.example.krishi.home.Person"
+        android:label="fragment_person"
+        tools:layout="@layout/fragment_person" >
+        <action
+            android:id="@+id/action_person2_to_weather2"
+            app:destination="@id/weather2" />
+        <action
+            android:id="@+id/action_person2_to_home2"
+            app:destination="@id/home2" />
+        <action
+            android:id="@+id/action_person2_to_crop2"
+            app:destination="@id/crop2" />
+    </fragment>
+    <fragment
+        android:id="@+id/weather2"
+        android:name="com.example.krishi.home.Weather"
+        android:label="fragment_weather"
+        tools:layout="@layout/fragment_weather" >
+        <action
+            android:id="@+id/action_weather2_to_person2"
+            app:destination="@id/person2" />
+        <action
+            android:id="@+id/action_weather2_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+</navigation>
