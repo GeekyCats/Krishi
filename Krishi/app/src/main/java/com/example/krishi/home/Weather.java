@@ -48,19 +48,19 @@ public class Weather extends Fragment {
         city = view.findViewById(R.id.city);
         temp = view.findViewById(R.id.temperature);
         humidity = view.findViewById(R.id.humidity);
-        rainfall = view.findViewById(R.id.rainfall);
-        city_name = view.findViewById(R.id.cityName);
-        icon = view.findViewById(R.id.imageView8);
-        search = view.findViewById(R.id.btn_enter);
+//        rainfall = view.findViewById(R.id.rainfall);
+//        city_name = view.findViewById(R.id.cityName);
+//        icon = view.findViewById(R.id.imageView8);
+//        search = view.findViewById(R.id.btn_enter);
         this.context = getContext();
 
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String name = city_name.getText().toString();
-                city.setText(name);
-                getWeatherData(name);
-            }});
+//        search.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String name = city_name.getText().toString();
+//                city.setText(name);
+//                getWeatherData(name);
+//            }});
 
         return view;
     }
