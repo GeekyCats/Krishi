@@ -2,40 +2,73 @@ package com.example.krishi.data;
 
 public class WeatherResponse {
 
-    private float temprature;
-    private float humidity;
-    private float precipitation;
-    private String icon_url;
+    String city,temp,humidity,rainfall,feels_like,condition;
+    int id;
 
-    public float getTemprature() {
-        return temprature;
+    public WeatherResponse(String city, String temp, String humidity, String rainfall, String feels_like, String condition,int id) {
+        this.city = city;
+        this.temp = temp;
+        this.humidity = humidity;
+        this.rainfall = rainfall;
+        this.feels_like = feels_like;
+        this.condition = condition;
+        this.id = id;
     }
 
-    public void setTemprature(float temprature) {
-        this.temprature = temprature;
+    public int getId() {
+        return id;
     }
 
-    public float getHumidity() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getTemp() {
+        return temp;
+    }
+
+    public void setTemp(String temp) {
+        this.temp = temp;
+    }
+
+    public String getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(float humidity) {
+    public void setHumidity(String humidity) {
         this.humidity = humidity;
     }
 
-    public float getPrecipitation() {
-        return precipitation;
+    public String getRainfall() {
+        return rainfall;
     }
 
-    public void setPrecipitation(float precipitation) {
-        this.precipitation = precipitation;
+    public void setRainfall(String rainfall) {
+        this.rainfall = rainfall;
     }
 
-    public String getIcon_url() {
-        return icon_url;
+    public String getFeels_like() {
+        return feels_like;
     }
 
-    public void setIcon_url(String icon_url) {
-        this.icon_url = icon_url;
+    public void setFeels_like(String feels_like) {
+        this.feels_like = feels_like;
     }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public void setCondition(String condition) {
+        this.condition = condition;
+    }
+
 }

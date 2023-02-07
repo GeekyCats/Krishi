@@ -29,22 +29,12 @@
                 android:textSize="24sp" />
 
             <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="Friday, June 30"
-                android:textColor="@color/white"
-                android:layout_below="@+id/city"
-                android:layout_marginStart="16dp"
-                android:textSize="16sp" />
-
-            <TextView
                 android:id="@+id/condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="Light Rain"
                 android:textColor="@color/white"
-                android:layout_below="@+id/date"
+                android:layout_below="@+id/city"
                 android:layout_marginStart="16dp"
                 android:textStyle="bold"
                 android:layout_marginTop="32dp"
@@ -191,7 +181,7 @@
                         android:layout_width="50dp"
                         android:layout_height="70dp"
                         android:layout_marginEnd="8dp"
-                        android:src="@drawable/wind" />
+                        android:src="@drawable/art_light_rain" />
 
                     <TextView
                         android:id="@+id/wind"
@@ -199,10 +189,10 @@
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@+id/wind_img"
                         android:textSize="14sp"
-                        android:text="Wind"/>
+                        android:text="Rainfall"/>
 
                     <TextView
-                        android:id="@+id/wind_value"
+                        android:id="@+id/rainfall"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@+id/wind_img"
@@ -210,44 +200,10 @@
                         android:layout_marginTop="4dp"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        tools:text="22C"/>
+                        tools:text="20"/>
 
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="8dp"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/sun"
-                        android:layout_width="50dp"
-                        android:layout_height="70dp"
-                        android:layout_marginEnd="8dp"
-                        android:src="@drawable/sun"/>
-
-                    <TextView
-                        android:id="@+id/sun_txt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/sun"
-                        android:textSize="14sp"
-                        android:text="UV Index"/>
-
-                    <TextView
-                        android:id="@+id/uv_value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/sun"
-                        android:layout_below="@+id/sun_txt"
-                        android:layout_marginTop="4dp"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        tools:text="22C"/>
-
-                </RelativeLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
