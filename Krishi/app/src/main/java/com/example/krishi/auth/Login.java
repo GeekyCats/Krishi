@@ -114,6 +114,7 @@ public class Login extends Fragment {
 
                 if(response.isSuccessful()){
                     loginResponse = response.body();
+
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     assert loginResponse != null;
                     String temp = loginResponse.getAuthToken();
@@ -121,6 +122,7 @@ public class Login extends Fragment {
                     editor.apply();
 
                     progressBar.setVisibility(View.GONE);
+
                     assert response.body() != null;
                     Toast.makeText(getContext(), "Login Successful !!", Toast.LENGTH_SHORT).show();
                      Intent intent = new Intent(requireActivity(), HomeActivity.class);
@@ -137,15 +139,5 @@ public class Login extends Fragment {
             }
         });
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(!token.isEmpty()){
-            Intent intent = new Intent(getActivity(), HomeActivity.class);
-            startActivity(intent);
-        }
-    }
-
 
 }
