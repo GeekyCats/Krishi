@@ -11,15 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.krishi.R;
-import com.example.krishi.data.News;
+import com.example.krishi.data.models.News;
 import com.example.krishi.recyclerView.RecyclerAdapter;
 import com.example.krishi.retrofit.ApiClient;
 import com.example.krishi.retrofit.UserService;
-import com.google.android.gms.common.api.Api;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import retrofit2.Call;
 

@@ -1,4 +1,4 @@
-package com.example.krishi.data;
+package com.example.krishi.data.models;
 
 import com.google.gson.annotations.SerializedName;
 

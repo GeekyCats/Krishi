@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.krishi.data.News;
+import com.example.krishi.data.models.News;
 import com.example.krishi.R;
 
 import java.util.List;

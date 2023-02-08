@@ -1,9 +1,10 @@
 package com.example.krishi.retrofit;
 
-import com.example.krishi.data.LoginRequest;
-import com.example.krishi.data.News;
-import com.example.krishi.data.UserResponse;
-import com.example.krishi.data.SignUpRequest;
+import com.example.krishi.data.models.User;
+import com.example.krishi.data.requests.LoginRequest;
+import com.example.krishi.data.models.News;
+import com.example.krishi.data.responses.LoginResponse;
+import com.example.krishi.data.requests.SignUpRequest;
 
 import java.util.List;
 
@@ -15,11 +16,11 @@ public interface UserService {
 
     @Headers("Content-Type: application/json")
     @POST("account/signin")
-    retrofit2.Call<UserResponse> login(@Body LoginRequest loginRequest);
+    retrofit2.Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
     @Headers("Content-Type: application/json")
     @POST("account/signup")
-    retrofit2.Call<UserResponse> register(@Body SignUpRequest signUpRequest);
+    retrofit2.Call<User> register(@Body SignUpRequest signUpRequest);
 
     @POST("/news")
     retrofit2.Call<List<News>> getNews();

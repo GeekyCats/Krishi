@@ -15,9 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.krishi.R;
+import com.example.krishi.data.models.User;
 import com.example.krishi.retrofit.ApiClient;
-import com.example.krishi.data.UserResponse;
-import com.example.krishi.data.SignUpRequest;
+import com.example.krishi.data.requests.SignUpRequest;
 
 import retrofit2.Call;
 
@@ -90,10 +90,10 @@ public class SignUp extends Fragment {
         return signUpRequest;
     }
     public void saveUser(SignUpRequest signUpRequest){
-        Call<UserResponse> call = ApiClient.getAPIService().register(signUpRequest);
-        call.enqueue(new retrofit2.Callback<UserResponse>() {
+        Call<User> call = ApiClient.getAPIService().register(signUpRequest);
+        call.enqueue(new retrofit2.Callback<User>() {
             @Override
-            public void onResponse(Call<UserResponse> call, retrofit2.Response<UserResponse> response) {
+            public void onResponse(Call<User> call, retrofit2.Response<User> response) {
                 if(response.isSuccessful()){
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(getContext(), "User Registered Successfully !!", Toast.LENGTH_SHORT).show();
@@ -105,7 +105,7 @@ public class SignUp extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext(), "Error: "+t.getMessage(), Toast.LENGTH_SHORT).show();
             }

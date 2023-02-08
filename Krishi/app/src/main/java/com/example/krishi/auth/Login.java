@@ -1,8 +1,11 @@
 package com.example.krishi.auth;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -17,10 +20,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.krishi.R;
+import com.example.krishi.data.responses.LoginResponse;
 import com.example.krishi.retrofit.ApiClient;
-import com.example.krishi.data.LoginRequest;
-import com.example.krishi.data.UserResponse;
+import com.example.krishi.data.requests.LoginRequest;
 import com.example.krishi.home.HomeActivity;
+
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -30,6 +35,16 @@ public class Login extends Fragment {
     ProgressBar progressBar;
     TextView email,password;
     Button button;
+
+    SharedPreferences sharedPreferences;
+
+    LoginResponse loginResponse;
+
+    public static final String SHARED_PREFS = "sharedPrefs";
+
+    public static final String AUTH_TOKEN = "authToken";
+
+    String token;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +65,16 @@ public class Login extends Fragment {
         password = view.findViewById(R.id.password);
         button = view.findViewById(R.id.btn_login);
         progressBar = view.findViewById(R.id.progressBar);
+
+        requireContext();
+        sharedPreferences = requireActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        token = sharedPreferences.getString(AUTH_TOKEN, "");
+
+        if(!token.isEmpty()){
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            startActivity(intent);
+        }
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,12 +107,21 @@ public class Login extends Fragment {
     }
 
     public void loginUser(LoginRequest loginRequest){
-        Call<UserResponse> loginResponseCall = ApiClient.getAPIService().login(loginRequest);
-        loginResponseCall.enqueue(new retrofit2.Callback<UserResponse>() {
+        Call<LoginResponse> loginResponseCall = ApiClient.getAPIService().login(loginRequest);
+        loginResponseCall.enqueue(new retrofit2.Callback<LoginResponse>() {
             @Override
-            public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
+            public void onResponse(@NonNull Call<LoginResponse> call, @NonNull retrofit2.Response<LoginResponse> response) {
+
                 if(response.isSuccessful()){
+                    loginResponse = response.body();
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    assert loginResponse != null;
+                    String temp = loginResponse.getAuthToken();
+                    editor.putString(AUTH_TOKEN, temp);
+                    editor.apply();
+
                     progressBar.setVisibility(View.GONE);
+                    assert response.body() != null;
                     Toast.makeText(getContext(), "Login Successful !!", Toast.LENGTH_SHORT).show();
                      Intent intent = new Intent(requireActivity(), HomeActivity.class);
                         startActivity(intent);
@@ -97,11 +131,21 @@ public class Login extends Fragment {
                 }
             }
             @Override
-            public void onFailure(Call<UserResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
                 progressBar.setVisibility(View.GONE);
                 Toast.makeText(getContext(), "Login Failed !!", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(!token.isEmpty()){
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            startActivity(intent);
+        }
+    }
+
 
 }
