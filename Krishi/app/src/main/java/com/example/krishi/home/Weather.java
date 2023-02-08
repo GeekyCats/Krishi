@@ -10,25 +10,19 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.krishi.MySingleton;
 import com.example.krishi.R;
-import com.example.krishi.auth.MainActivity;
 import com.example.krishi.data.WeatherResponse;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -105,14 +99,13 @@ public class Weather extends Fragment {
 
         Toast.makeText(context, "ok4", Toast.LENGTH_SHORT).show();
         api_url = api_url + lat + "," + lon;
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, api_url,
-                null, new Response.Listener<JSONArray>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST, api_url, null, new Response.Listener<JSONObject>() {
             @Override
-            public void onResponse(JSONArray response) {
+            public void onResponse(JSONObject response) {
                 try {
-                    JSONObject jsonObject = response.getJSONObject(0);
-                    JSONObject location = jsonObject.getJSONObject("location");
-                    JSONObject current =  jsonObject.getJSONObject("current");
+                    JSONObject location = response.getJSONObject("location");
+                    JSONObject current =  response.getJSONObject("current");
 
                     String cityName = location.getString("name");
 
@@ -144,14 +137,15 @@ public class Weather extends Fragment {
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-        queue.add(request);
+        queue.add(jsonObjectRequest);
     }
 
     private void setParameters(WeatherResponse weatherResponse) {
