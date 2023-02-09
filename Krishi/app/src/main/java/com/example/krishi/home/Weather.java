@@ -39,7 +39,7 @@ public class Weather extends Fragment {
 
     RequestQueue queue;
 
-    String api_url = "http://api.weatherapi.com/v1/current.json?key=bb0c2c73eebf4e3b914173924230702&q=";
+    String api_url = "https://api.weatherapi.com/v1/current.json?key=bb0c2c73eebf4e3b914173924230702&q=";
 
     double lat,lon;
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -59,8 +59,8 @@ public class Weather extends Fragment {
         View view = inflater.inflate(R.layout.fragment_weather, container, false);
 
         city = view.findViewById(R.id.city);
-        temp = view.findViewById(R.id.temperature);
-        humidity = view.findViewById(R.id.humidity);
+        temp = view.findViewById(R.id.temp_condition);
+        humidity = view.findViewById(R.id.humidity_value);
         rainfall= view.findViewById(R.id.rainfall);
         feels_like = view.findViewById(R.id.feels_like);
         condition = view.findViewById(R.id.condition);
@@ -74,7 +74,7 @@ public class Weather extends Fragment {
 
         requestLocationPermission();
 
-        Toast.makeText(context, "ok1", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "ok1", Toast.LENGTH_SHORT).show();
         obtainLocation();
 
 
@@ -83,13 +83,12 @@ public class Weather extends Fragment {
 
     @SuppressLint("MissingPermission")
     private void obtainLocation() {
-        Toast.makeText(context, "ok2", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "ok2", Toast.LENGTH_SHORT).show();
         fusedLocationProviderClient.getLastLocation().addOnSuccessListener(location -> {
             if (location != null) {
                 lat = location.getLatitude();
                 lon = location.getLongitude();
-                Toast.makeText(context, "ok3", Toast.LENGTH_SHORT).show();
-
+//                Toast.makeText(context, "ok3", Toast.LENGTH_SHORT).show();
                 getTemp();
             }
         });
@@ -97,13 +96,15 @@ public class Weather extends Fragment {
 
     private void getTemp() {
 
-        Toast.makeText(context, "ok4", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, "ok4", Toast.LENGTH_SHORT).show();
         api_url = api_url + lat + "," + lon;
+        System.out.println(api_url);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.POST, api_url, null, new Response.Listener<JSONObject>() {
+                Request.Method.GET, api_url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    System.out.println("recieved response");
                     JSONObject location = response.getJSONObject("location");
                     JSONObject current =  response.getJSONObject("current");
 
@@ -142,15 +143,15 @@ public class Weather extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(requireContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
         queue.add(jsonObjectRequest);
     }
 
     private void setParameters(WeatherResponse weatherResponse) {
-        Toast.makeText(context, "ok7", Toast.LENGTH_SHORT).show();
-        city.setText(weatherResponse.getCity()+"°C");
+//        Toast.makeText(context, "ok7", Toast.LENGTH_SHORT).show();
+        city.setText(weatherResponse.getCity());
         temp.setText(weatherResponse.getTemp()+"°C");
         humidity.setText(weatherResponse.getHumidity());
         rainfall.setText(weatherResponse.getRainfall());
@@ -193,7 +194,7 @@ public class Weather extends Fragment {
     public void requestLocationPermission() {
         String[] perms = {Manifest.permission.ACCESS_FINE_LOCATION};
         if(EasyPermissions.hasPermissions(requireContext(), perms)) {
-            Toast.makeText(requireContext(), "Permission already granted", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(requireContext(), "Permission already granted", Toast.LENGTH_SHORT).show();
         }
         else {
             EasyPermissions.requestPermissions(this, "Please grant the location permission", REQUEST_LOCATION_PERMISSION, perms);

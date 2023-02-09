@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,47 +17,56 @@
             android:layout_height="350dp"
             android:background="@drawable/weather_forecast"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <TextView
                 android:id="@+id/city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="New Delhi"
-                android:textColor="@color/white"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:textSize="24sp" />
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                tools:text="New Delhi" />
 
             <TextView
                 android:id="@+id/condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Light Rain"
-                android:textColor="@color/white"
                 android:layout_below="@+id/city"
                 android:layout_marginStart="16dp"
-                android:textStyle="bold"
                 android:layout_marginTop="32dp"
-                android:textSize="16sp" />
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="Light Rain" />
 
             <ImageView
                 android:id="@+id/weather_resource"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/art_light_rain"
                 android:layout_alignParentEnd="true"
-                android:padding="8dp"/>
+                android:padding="8dp"
+                android:src="@drawable/art_light_rain" />
 
             <TextView
                 android:id="@+id/temp_condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="36C"
+                android:layout_below="@+id/condition"
+                android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
-                android:textColor="@color/white"
+                android:layout_marginStart="90dp"
+                android:layout_marginTop="153dp"
+                android:layout_marginEnd="116dp"
+                android:layout_marginBottom="7dp"
+                android:layout_toEndOf="@+id/condition"
                 android:padding="16dp"
-                android:textSize="48sp" />
+                android:textColor="@color/white"
+                android:textSize="48sp"
+                tools:text="36C" />
 
         </RelativeLayout>
 
@@ -144,20 +154,23 @@
                         android:id="@+id/humidity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
                         android:layout_toEndOf="@+id/humidity_img"
-                        android:textSize="14sp"
-                        android:text="Humidity"/>
+                        android:text="Humidity"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/humidity_value"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@+id/humidity_img"
                         android:layout_below="@+id/humidity"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_toEndOf="@+id/humidity_img"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        tools:text="22C"/>
+                        tools:text="22C" />
 
                 </RelativeLayout>
 
@@ -167,7 +180,9 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_gravity="center"
                 android:layout_weight="1"
+
                 android:layout_marginTop="10dp">
                 <RelativeLayout
                     android:layout_width="0dp"
