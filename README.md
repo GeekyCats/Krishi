@@ -8,7 +8,7 @@ For more info and UI images visit: -
 
 ## Related Repositories 😍: -
 - [Deployed ML Flask Backend](https://github.com/GeekyCats/Krishi-Ml-Backend)
-- [Backend](https://github.com/GeekyCats/Krishi-Ml-Backend)
+- [Backend](https://github.com/GeekyCats/Krishi-Backend)
 
 
 ## Key Features 😀 : -
