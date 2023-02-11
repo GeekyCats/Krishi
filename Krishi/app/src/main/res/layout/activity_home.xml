@@ -9,9 +9,10 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/container"
@@ -32,13 +33,13 @@
             android:id="@+id/bottomNavBar"
             android:layout_width="400dp"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:background="@drawable/layout_bg"
             app:backgroundTint="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            android:layout_gravity="center"
-            app:menu="@menu/bottom_nav"/>
+            app:menu="@menu/bottom_nav" />
 
     </FrameLayout>
 

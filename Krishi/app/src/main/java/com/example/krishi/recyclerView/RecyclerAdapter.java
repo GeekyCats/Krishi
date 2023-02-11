@@ -15,6 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.example.krishi.data.models.News;
 import com.example.krishi.R;
 
@@ -46,9 +48,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         holder.title.setText(news.getTitle());
         String url = news.getUrlToImage();
         try{
+            RequestOptions requestOptions = new RequestOptions();
+            requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(16));
         Glide.with(context)
-                .load(url)
-                .apply(RequestOptions.centerCropTransform())
+                .load(url).apply(requestOptions)
                 .into(holder.urlToImage);}
         catch (Exception e){
             Log.d("Error", "onBindViewHolder: "+e);
