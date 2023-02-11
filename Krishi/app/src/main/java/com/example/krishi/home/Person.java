@@ -1,6 +1,7 @@
 package com.example.krishi.home;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -23,11 +24,9 @@ public class Person extends Fragment {
 
     Button logout;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -41,6 +40,18 @@ public class Person extends Fragment {
             @Override
             public void onClick(View v) {
 
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Are you sure you want to logout?");
+                builder.setPositiveButton("Yes", (dialog, which) -> {
+                    SharedPreferences settings = requireActivity().getSharedPreferences("sharedPrefs", 0);
+                    SharedPreferences.Editor editor = settings.edit();
+                    editor.clear();
+                    editor.apply();
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                });
+                builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
+                builder.show();
             }
         });
 
