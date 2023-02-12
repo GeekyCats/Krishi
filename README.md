@@ -35,7 +35,7 @@ For more info and UI images visit: -
  
 #### Android Studio
 Android Studio Bumblebee or later
-SDK 19 or later
+SDK 21 or later
 
 ## Fond this repository useful? :heart:
 Support it by joining __[stargazers](https://github.com/GeekyCats/Krishi-Frontend/stargazers)__ for this repository. :star: <br>
