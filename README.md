@@ -17,7 +17,7 @@ For more info and UI images visit: -
 - Weather related information.
 
 ## Android Libraries used: -
-- [Retrofit](https://square.github.io/retrofit/) - For Authentication,News and Loading Data from Ml Flask server.
+- [Retrofit2 and OkHttp3](https://square.github.io/retrofit/) - For Authentication,News and Loading Data from Ml Flask server.
 - [Volley](https://github.com/google/volley) - For fetching Weather Data.
 - [Coil and Glide](https://coil-kt.github.io/coil/) - Handling Images 
 - JetPack
