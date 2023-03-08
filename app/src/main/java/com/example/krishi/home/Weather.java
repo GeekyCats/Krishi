@@ -33,6 +33,8 @@ import com.google.android.gms.location.LocationServices;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -48,6 +50,8 @@ public class Weather extends Fragment {
 
     String api_url = "https://api.weatherapi.com/v1/current.json?key=bb0c2c73eebf4e3b914173924230702&q=";
 
+    String copy = api_url;
+
     double lat, lon;
 
     Location currentLocation;
@@ -60,7 +64,7 @@ public class Weather extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-
+        locationManager = (LocationManager) requireContext().getSystemService(Context.LOCATION_SERVICE);
     }
 
     @Override
@@ -81,7 +85,6 @@ public class Weather extends Fragment {
         queue = Volley.newRequestQueue(requireContext());
 
         assert context != null;
-        locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
 
         getTemp();
 
@@ -92,13 +95,13 @@ public class Weather extends Fragment {
 
         getLastLocation();
         api_url = api_url + lat + "," + lon;
-        System.out.println(api_url);
+//        System.out.println(api_url);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
                 Request.Method.GET, api_url, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 try {
-                    System.out.println("recieved response");
+//                    System.out.println("recieved response");
                     JSONObject location = response.getJSONObject("location");
                     JSONObject current = response.getJSONObject("current");
 
@@ -128,6 +131,7 @@ public class Weather extends Fragment {
                             feelsLike, condition1, rainfall1, id);
 
                     setParameters(weatherResponse);
+                    api_url = copy;
 
                 } catch (JSONException e) {
                     throw new RuntimeException(e);
@@ -234,10 +238,10 @@ public class Weather extends Fragment {
                 // for ActivityCompat#requestPermissions for more details.
                 return;
             }
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 500, gpsLocationListener);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 500, gpsLocationListener);
         }
         if (hasNetwork) {
-            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10000, 500, networkLocationListener);
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 15000, 500, networkLocationListener);
         }
 
         Location lastKnownLocationByGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
