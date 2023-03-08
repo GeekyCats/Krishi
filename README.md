@@ -3,7 +3,7 @@
 ## About: -
 The app focuses on helping the Gen-z who are interested in agriculture related activities and don't have any prior knowledge or experience. Our App uses ML model to predict the best crop you should sow in your crop based on the current environment situations of your area. There are lot of other features and we are continuously working on adding more useful features.
  
-For more info and UI images visit: -
+For demo Video and UI images visit: -
 - [Devpost Link](https://devpost.com/software/krishi-akhbu3)
 
 ## Related Repositories 😍: -
