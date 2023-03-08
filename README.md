@@ -37,7 +37,7 @@ For demo Video and UI images visit: -
 Android Studio Bumblebee or later
 SDK 21 or later
 
-## Fond this repository useful? :heart:
+## Found this repository useful? :heart:
 Support it by joining __[stargazers](https://github.com/GeekyCats/Krishi-Frontend/stargazers)__ for this repository. :star: <br>
 Also, __[follow me](https://github.com/AmartyaSingh97)__ on GitHub for my next creations! 🤩
 
