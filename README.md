@@ -18,7 +18,7 @@ For demo Video and UI images visit: -
 
 ## Android Libraries used: -
 - [Retrofit2 and OkHttp3](https://square.github.io/retrofit/) - For Authentication,News and Loading Data from Ml Flask server.
-- [Volley](https://github.com/google/volley) - For fetching Weather Data.
+- [Volley](https://github.com/google/volley) - For fetching Weather Data and ML backend.
 - [Coil and Glide](https://coil-kt.github.io/coil/) - Handling Images 
 - JetPack
    - Recycler View
