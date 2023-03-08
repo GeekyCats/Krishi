@@ -1,7 +1,6 @@
 package com.example.krishi.home;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -15,28 +14,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.krishi.R;
 import com.example.krishi.data.responses.WeatherResponse;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Objects;
-
-import pub.devrel.easypermissions.AfterPermissionGranted;
-import pub.devrel.easypermissions.EasyPermissions;
 
 
 public class Weather extends Fragment {
@@ -58,6 +47,10 @@ public class Weather extends Fragment {
     LocationManager locationManager;
 
     Location locationByGPS, locationByNetwork;
+
+    static String temperatureData;
+    static String humidityData;
+    static String rainfallData;
 
 
     @Override
@@ -97,53 +90,45 @@ public class Weather extends Fragment {
         api_url = api_url + lat + "," + lon;
 //        System.out.println(api_url);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
-                Request.Method.GET, api_url, null, new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                try {
-//                    System.out.println("recieved response");
-                    JSONObject location = response.getJSONObject("location");
-                    JSONObject current = response.getJSONObject("current");
+                Request.Method.GET, api_url, null, response -> {
+                    try {
+    //                    System.out.println("recieved response");
+                        JSONObject location = response.getJSONObject("location");
+                        JSONObject current = response.getJSONObject("current");
 
-                    String cityName = location.getString("name");
+                        String cityName = location.getString("name");
 
-                    double temp1 = current.getDouble("temp_c");
-                    int temp2 = (int) Math.round(temp1);
-                    String temperature = String.valueOf(temp2);
+                        double temp1 = current.getDouble("temp_c");
+                        int temp2 = (int) Math.round(temp1);
+                        String temperature = String.valueOf(temp2);
 
-                    double feels_like1 = current.getDouble("feelslike_c");
-                    int feels_like2 = (int) Math.round(feels_like1);
-                    String feelsLike = String.valueOf(feels_like2);
+                        double feels_like1 = current.getDouble("feelslike_c");
+                        int feels_like2 = (int) Math.round(feels_like1);
+                        String feelsLike = String.valueOf(feels_like2);
 
-                    int humidity1 = current.getInt("humidity");
-                    String humidity2 = String.valueOf(humidity1);
+                        int humidity1 = current.getInt("humidity");
+                        String humidity2 = String.valueOf(humidity1);
 
-                    JSONObject condition = current.getJSONObject("condition");
-                    String condition1 = condition.getString("text");
+                        JSONObject condition = current.getJSONObject("condition");
+                        String condition1 = condition.getString("text");
 
-                    double rain1 = current.getDouble("precip_mm");
-                    int rain2 = (int) Math.round(rain1);
-                    String rainfall1 = String.valueOf(rain2);
+                        double rain1 = current.getDouble("precip_mm");
+                        int rain2 = (int) Math.round(rain1);
+                        String rainfall1 = String.valueOf(rain2);
 
-                    int id = condition.getInt("code");
+                        int id = condition.getInt("code");
 
-                    WeatherResponse weatherResponse = new WeatherResponse(cityName, temperature, humidity2,
-                            feelsLike, condition1, rainfall1, id);
+                        WeatherResponse weatherResponse = new WeatherResponse(cityName, temperature, humidity2,
+                                feelsLike, condition1, rainfall1, id);
 
-                    setParameters(weatherResponse);
-                    api_url = copy;
+                        setParameters(weatherResponse);
+                        api_url = copy;
 
-                } catch (JSONException e) {
-                    throw new RuntimeException(e);
-                }
+                    } catch (JSONException e) {
+                        throw new RuntimeException(e);
+                    }
 
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        });
+                }, error -> Toast.makeText(context, error.toString(), Toast.LENGTH_SHORT).show());
         queue.add(jsonObjectRequest);
     }
 
@@ -155,6 +140,10 @@ public class Weather extends Fragment {
         rainfall.setText(weatherResponse.getRainfall());
         feels_like.setText(weatherResponse.getFeels_like());
         condition.setText(weatherResponse.getCondition());
+
+        temperatureData = weatherResponse.getTemp();
+        humidityData = weatherResponse.getHumidity();
+        rainfallData = weatherResponse.getRainfall();
 
         int id = weatherResponse.getId();
         if (id == 1273 || id == 1276 || id == 1279 || id == 1282 || id == 1087) {
@@ -173,6 +162,17 @@ public class Weather extends Fragment {
         } else if (id == 1003 || id == 1006 || id == 1009) {
             icon.setImageResource(R.drawable.clouds);
         }
+    }
+    public static String getTemperatureData() {
+        return temperatureData;
+    }
+
+    public static String getHumidityData() {
+        return humidityData;
+    }
+
+    public static String getRainfallData() {
+        return rainfallData;
     }
 
     public void getLastLocation() {
